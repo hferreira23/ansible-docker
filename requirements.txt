@@ -1,6 +1,5 @@
 ansible-core
 ansible-lint
 jmespath
-ansiblemetrics
 ara
 dnspython
