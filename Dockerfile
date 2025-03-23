@@ -12,8 +12,8 @@ RUN python3 -m pip install --prefix="/build" -U -r ./requirements.txt
 
 FROM base
 
-ENV OBJC_DISABLE_INITIALIZE_FORK_SAFETY YES
-ENV PYTHONUNBUFFERED 1
+ENV OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+ENV PYTHONUNBUFFERED=1
 
 RUN apt update && apt full-upgrade -y && \
     apt install -y git curl sshpass openssh-client jq --no-install-recommends && \
@@ -27,4 +27,4 @@ COPY --from=builder /build /usr/local
 
 RUN ansible-galaxy collection install -r ./requirements.yml
 
-CMD /bin/bash
+CMD ["/bin/bash"]
