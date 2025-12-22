@@ -1,15 +1,17 @@
-name: ansible_ci
+---
+name: ansible_cointainer_ci
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: {}
   push:
-    branches: main
+    branches:
+      - main
   schedule:
     - cron: '0 4 * * 6'
 
 jobs:
   build_image:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       -
         name: Checkout
