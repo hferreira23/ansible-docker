@@ -1,5 +1,5 @@
-ansible-core<2.19.0
-ansible-lint
-jmespath
-ara
-dnspython
+ansible-core==2.20.1
+ansible-lint==25.12.1
+jmespath==1.0.1
+ara==1.7.4
+dnspython==2.8.0
