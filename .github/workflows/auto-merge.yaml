@@ -1,0 +1,31 @@
+---
+name: Auto-merge Release Please PRs
+
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize, ready_for_review]
+
+permissions:
+  pull-requests: write
+  contents: write
+
+jobs:
+  enable-automerge:
+    # Only for PRs created by release-please
+    if: >
+      github.event.pull_request.user.login == 'github-actions[bot]' &&
+      startsWith(github.event.pull_request.title, 'chore') &&
+      contains(github.event.pull_request.title, 'release')
+    runs-on: ubuntu-latest
+
+    steps:
+      # Optional: auto-approve if your branch protection requires reviews
+      # Requires: Settings → Actions → "Allow GitHub Actions to create and approve pull requests"
+      - name: Approve PR and enable auto-merge
+        run: |
+          # Approve the PR
+          gh pr review --approve ${{ github.event.pull_request.number }}
+          # Enable auto-merge
+          gh pr merge --auto --merge ${{ github.event.pull_request.number }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
