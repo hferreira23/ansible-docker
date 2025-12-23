@@ -1,5 +1,5 @@
 ---
-name: Auto-merge Release Please PRs
+name: auto-merge
 
 on:
   pull_request:
