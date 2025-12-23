@@ -1,8 +1,8 @@
 ---
-name: Auto-merge Release Please PRs
+name: auto-merge
 
 on:
-  pull_request_target:
+  pull_request:
     types: [opened, reopened, synchronize, ready_for_review]
 
 permissions:
