@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/hferreira23/ansible-docker/compare/v1.0.0...v1.1.0) (2025-12-23)
+
+
+### Features
+
+* **images:** pushing images to ghcr ([#5](https://github.com/hferreira23/ansible-docker/issues/5)) ([a788cc3](https://github.com/hferreira23/ansible-docker/commit/a788cc3f749c0399a3d03aa597caf25ec76e72da))
+
+
+### Bug Fixes
+
+* auto merge ci ([#7](https://github.com/hferreira23/ansible-docker/issues/7)) ([4f64661](https://github.com/hferreira23/ansible-docker/commit/4f64661a891e27a3f58b61c88719e684f3c65998))
+
 ## 1.0.0 (2025-12-22)
 
 
