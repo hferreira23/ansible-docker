@@ -17,13 +17,67 @@ env:
   IMAGE_NAME: hferreira/ansible-docker
 
 jobs:
+  prepare:
+    name: Determine build context
+    runs-on: ubuntu-latest
+    outputs:
+      should-build: ${{ steps.check.outputs.should-build }}
+      ref: ${{ steps.check.outputs.ref }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Check if build should proceed
+        id: check
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Determine if we should build based on event type
+          if [[ "${{ github.event_name }}" == "push" ]]; then
+            # For push events, check if it's a release-please commit by github-actions bot
+            commit_message="${{ github.event.head_commit.message }}"
+            commit_author="${{ github.event.head_commit.author.username }}"
+            if [[ "$commit_author" == "github-actions[bot]" ]] && [[ "$commit_message" =~ ^chore\(main\):\ release ]]; then
+              echo "should-build=true" >> "$GITHUB_OUTPUT"
+              echo "ref=${{ github.sha }}" >> "$GITHUB_OUTPUT"
+              echo "✅ Release commit by github-actions[bot] detected, building from main branch"
+            else
+              echo "should-build=false" >> "$GITHUB_OUTPUT"
+              echo "⏭️  Not a release commit by github-actions[bot], skipping build"
+            fi
+          elif [[ "${{ github.event_name }}" == "schedule" ]] || [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            # For schedule/manual triggers, use latest release
+            latest_release=$(gh release view --json tagName --jq '.tagName' 2>/dev/null || echo "")
+            if [[ -n "$latest_release" ]]; then
+              echo "should-build=true" >> "$GITHUB_OUTPUT"
+              echo "ref=$latest_release" >> "$GITHUB_OUTPUT"
+              echo "✅ Building from latest release: $latest_release"
+            else
+              echo "should-build=false" >> "$GITHUB_OUTPUT"
+              echo "❌ No release found, skipping build"
+            fi
+          else
+            echo "should-build=false" >> "$GITHUB_OUTPUT"
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}
+
   build-amd64:
     name: Build amd64 image
+    needs: prepare
+    if: needs.prepare.outputs.should-build == 'true'
     runs-on: ubuntu-latest
     outputs:
       docker-image-amd: ${{ env.IMAGE_NAME }}:amd64
       ghcr-image-amd: ghcr.io/${{ github.repository }}:amd64
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ needs.prepare.outputs.ref }}
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
@@ -54,11 +108,18 @@ jobs:
 
   build-arm64:
     name: Build arm64 image
+    needs: prepare
+    if: needs.prepare.outputs.should-build == 'true'
     runs-on: ubuntu-24.04-arm
     outputs:
       docker-image-arm: ${{ env.IMAGE_NAME }}:arm64
       ghcr-image-arm: ghcr.io/${{ github.repository }}:arm64
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ needs.prepare.outputs.ref }}
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
