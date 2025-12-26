@@ -32,6 +32,8 @@ jobs:
       should-build: ${{ steps.check.outputs.should-build }}
       should-push: ${{ steps.check.outputs.should-push }}
       ref: ${{ steps.check.outputs.ref }}
+      version: ${{ steps.version.outputs.tag }}
+      has-version: ${{ steps.version.outputs.has-version }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -90,6 +92,23 @@ jobs:
           fi
         env:
           GH_TOKEN: ${{ github.token }}
+
+      - name: Extract version from ref
+        id: version
+        shell: bash
+        run: |
+          set -euo pipefail
+          ref="${{ steps.check.outputs.ref }}"
+          # Check if ref looks like a version tag (starts with v or is a semver pattern)
+          if [[ "$ref" =~ ^v?[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+            version="${ref#v}"  # Remove leading 'v' if present
+            echo "tag=$version" >> "$GITHUB_OUTPUT"
+            echo "has-version=true" >> "$GITHUB_OUTPUT"
+            echo "📦 Version tag detected: $version"
+          else
+            echo "has-version=false" >> "$GITHUB_OUTPUT"
+            echo "ℹ️  No version tag in ref"
+          fi
 
   build-amd64:
     name: Build amd64 image
@@ -212,12 +231,26 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create and push multi-arch manifests (DockerHub + GHCR)
+        shell: bash
         run: |
+          set -euo pipefail
           # docker buildx imagetools create will assemble a manifest list from existing images
+          version_tag=""
+          if [[ "${{ needs.prepare.outputs.has-version }}" == "true" ]]; then
+            version_tag="--tag ${{ env.IMAGE_NAME }}:${{ needs.prepare.outputs.version }}"
+          fi
+
           docker buildx imagetools create --tag "${{ env.IMAGE_NAME }}:latest" \
+            ${version_tag} \
             "${{ env.IMAGE_NAME }}:amd64" \
             "${{ env.IMAGE_NAME }}:arm64"
 
+          version_tag_ghcr=""
+          if [[ "${{ needs.prepare.outputs.has-version }}" == "true" ]]; then
+            version_tag_ghcr="--tag ghcr.io/${{ github.repository }}:${{ needs.prepare.outputs.version }}"
+          fi
+
           docker buildx imagetools create --tag "ghcr.io/${{ github.repository }}:latest" \
+            ${version_tag_ghcr} \
             "ghcr.io/${{ github.repository }}:amd64" \
             "ghcr.io/${{ github.repository }}:arm64"
