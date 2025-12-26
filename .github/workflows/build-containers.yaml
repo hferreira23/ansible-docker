@@ -3,7 +3,10 @@ name: build-containers
 
 on:
   workflow_dispatch: {}
-  push:
+  workflow_run:
+    workflows: ["SemVer"]
+    types:
+      - completed
     branches:
       - main
   pull_request:
@@ -46,19 +49,30 @@ jobs:
         run: |
           set -euo pipefail
           # Determine if we should build based on event type
-          if [[ "${{ github.event_name }}" == "push" ]]; then
-            # For push events, check if it's a release-please commit by github-actions bot
-            commit_message="${{ github.event.head_commit.message }}"
-            commit_author="${{ github.event.head_commit.author.username }}"
-            if [[ "$commit_author" == "github-actions[bot]" ]] && [[ "$commit_message" =~ ^chore\(main\):\ release ]]; then
-              echo "should-build=true" >> "$GITHUB_OUTPUT"
-              echo "should-push=true" >> "$GITHUB_OUTPUT"
-              echo "ref=${{ github.sha }}" >> "$GITHUB_OUTPUT"
-              echo "✅ Release commit by github-actions[bot] detected, building and pushing from main branch"
+          if [[ "${{ github.event_name }}" == "workflow_run" ]]; then
+            # For workflow_run events (triggered by SemVer), check multiple conditions:
+            # 1. SemVer workflow succeeded
+            # 2. Commit is from github-actions[bot]
+            # 3. Commit message starts with "chore(main): release"
+            if [[ "${{ github.event.workflow_run.conclusion }}" == "success" ]]; then
+              # Fetch the commit details to check author and message
+              commit_author="${{ github.event.workflow_run.head_commit.author.name }}"
+              commit_message="${{ github.event.workflow_run.head_commit.message }}"
+
+              if [[ "$commit_author" == "github-actions[bot]" ]] && [[ "$commit_message" =~ ^chore\(main\):\ release ]]; then
+                echo "should-build=true" >> "$GITHUB_OUTPUT"
+                echo "should-push=true" >> "$GITHUB_OUTPUT"
+                echo "ref=${{ github.event.workflow_run.head_sha }}" >> "$GITHUB_OUTPUT"
+                echo "✅ SemVer workflow succeeded with release commit by github-actions[bot], building and pushing"
+              else
+                echo "should-build=false" >> "$GITHUB_OUTPUT"
+                echo "should-push=false" >> "$GITHUB_OUTPUT"
+                echo "⏭️  Not a release commit by github-actions[bot], skipping build"
+              fi
             else
               echo "should-build=false" >> "$GITHUB_OUTPUT"
               echo "should-push=false" >> "$GITHUB_OUTPUT"
-              echo "⏭️  Not a release commit by github-actions[bot], skipping build"
+              echo "❌ SemVer workflow did not succeed, skipping build"
             fi
           elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
             # For PRs, check if it's a fix: or feat: commit - build but don't push
