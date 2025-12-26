@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/hferreira23/ansible-docker/compare/v1.1.0...v1.2.0) (2025-12-26)
+
+
+### Features
+
+* migrate to python dhi image ([#11](https://github.com/hferreira23/ansible-docker/issues/11)) ([2302bf3](https://github.com/hferreira23/ansible-docker/commit/2302bf3a37acb4a0d05555a53f6c4d610855feec))
+
 ## [1.1.0](https://github.com/hferreira23/ansible-docker/compare/v1.0.0...v1.1.0) (2025-12-23)
 
 
