@@ -1,7 +1,9 @@
 # ansible-docker
 
 [![build-containers](https://github.com/hferreira23/ansible-docker/actions/workflows/build-containers.yaml/badge.svg)](https://github.com/hferreira23/ansible-docker/actions/workflows/build-containers.yaml)
-[![SemVer](https://github.com/hferreira23/ansible-docker/actions/workflows/SemVer.yaml/badge.svg)](https://github.com/hferreira23/ansible-docker/actions/workflows/SemVer.yaml)
+[![sem-ver-release](https://github.com/hferreira23/ansible-docker/actions/workflows/sem-ver-release.yaml/badge.svg)](https://github.com/hferreira23/ansible-docker/actions/workflows/sem-ver-release.yaml)
+[![commit-lint](https://github.com/hferreira23/ansible-docker/actions/workflows/commit-lint.yaml/badge.svg)](https://github.com/hferreira23/ansible-docker/actions/workflows/commit-lint.yaml)
+[![auto-merge](https://github.com/hferreira23/ansible-docker/actions/workflows/auto-merge.yaml/badge.svg)](https://github.com/hferreira23/ansible-docker/actions/workflows/auto-merge.yaml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A production-ready, multi-architecture Docker image for Ansible automation, optimized for size and security.
