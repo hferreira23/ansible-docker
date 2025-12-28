@@ -3,12 +3,9 @@ name: build-containers
 
 on:
   workflow_dispatch: {}
-  workflow_run:
-    workflows: ["SemVer"]
+  release:
     types:
-      - completed
-    branches:
-      - main
+      - published
   pull_request:
     branches:
       - main
@@ -29,7 +26,7 @@ env:
 
 jobs:
   prepare:
-    name: Determine build context
+    name: prepare-build-containers
     runs-on: ubuntu-latest
     outputs:
       should-build: ${{ steps.check.outputs.should-build }}
@@ -49,35 +46,16 @@ jobs:
         run: |
           set -euo pipefail
           # Determine if we should build based on event type
-          if [[ "${{ github.event_name }}" == "workflow_run" ]]; then
-            # For workflow_run events (triggered by SemVer), check multiple conditions:
-            # 1. SemVer workflow succeeded
-            # 2. Commit is from github-actions[bot]
-            # 3. Commit message starts with "chore(main): release"
-            if [[ "${{ github.event.workflow_run.conclusion }}" == "success" ]]; then
-              # Fetch the commit details to check author and message
-              commit_author="${{ github.event.workflow_run.head_commit.author.name }}"
-              commit_message="${{ github.event.workflow_run.head_commit.message }}"
-
-              if [[ "$commit_author" == "github-actions[bot]" ]] && [[ "$commit_message" =~ ^chore\(main\):\ release ]]; then
-                echo "should-build=true" >> "$GITHUB_OUTPUT"
-                echo "should-push=true" >> "$GITHUB_OUTPUT"
-                echo "ref=${{ github.event.workflow_run.head_sha }}" >> "$GITHUB_OUTPUT"
-                echo "✅ SemVer workflow succeeded with release commit by github-actions[bot], building and pushing"
-              else
-                echo "should-build=false" >> "$GITHUB_OUTPUT"
-                echo "should-push=false" >> "$GITHUB_OUTPUT"
-                echo "⏭️  Not a release commit by github-actions[bot], skipping build"
-              fi
-            else
-              echo "should-build=false" >> "$GITHUB_OUTPUT"
-              echo "should-push=false" >> "$GITHUB_OUTPUT"
-              echo "❌ SemVer workflow did not succeed, skipping build"
-            fi
+          if [[ "${{ github.event_name }}" == "release" ]]; then
+            # For release events, build and push using the release tag
+            echo "should-build=true" >> "$GITHUB_OUTPUT"
+            echo "should-push=true" >> "$GITHUB_OUTPUT"
+            echo "ref=${{ github.event.release.tag_name }}" >> "$GITHUB_OUTPUT"
+            echo "✅ Release published, building and pushing: ${{ github.event.release.tag_name }}"
           elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
             # For PRs, check if it's a fix: or feat: commit - build but don't push
-            commit_message="${{ github.event.pull_request.title }}"
-            if [[ "$commit_message" =~ ^(fix|feat): ]]; then
+            pr_title="${{ github.event.pull_request.title }}"
+            if [[ "$pr_title" =~ ^(fix|feat): ]]; then
               echo "should-build=true" >> "$GITHUB_OUTPUT"
               echo "should-push=false" >> "$GITHUB_OUTPUT"
               echo "ref=${{ github.event.pull_request.head.sha }}" >> "$GITHUB_OUTPUT"
@@ -103,6 +81,7 @@ jobs:
           else
             echo "should-build=false" >> "$GITHUB_OUTPUT"
             echo "should-push=false" >> "$GITHUB_OUTPUT"
+            echo "ℹ️  Event type ${{ github.event_name }} not configured for build"
           fi
         env:
           GH_TOKEN: ${{ github.token }}
@@ -125,7 +104,7 @@ jobs:
           fi
 
   build-amd64:
-    name: Build amd64 image
+    name: build-amd64-image
     needs: prepare
     if: needs.prepare.outputs.should-build == 'true'
     runs-on: ubuntu-latest
@@ -174,7 +153,7 @@ jobs:
             ghcr.io/${{ github.repository }}:amd64
 
   build-arm64:
-    name: Build arm64 image
+    name: build-arm64-image
     needs: prepare
     if: needs.prepare.outputs.should-build == 'true'
     runs-on: ubuntu-24.04-arm
@@ -223,7 +202,7 @@ jobs:
             ghcr.io/${{ github.repository }}:arm64
 
   create-manifest:
-    name: Create and push multi-arch manifests
+    name: create-muilti-arch-manifest
     needs: [prepare, build-amd64, build-arm64]
     if: fromJSON(needs.prepare.outputs.should-push)
     runs-on: ubuntu-latest
