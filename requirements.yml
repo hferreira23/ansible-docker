@@ -5,3 +5,4 @@ collections:
   - name: ansible.netcommon
   - name: community.docker
   - name: community.libvirt
+  - name: hferreira23.pihole

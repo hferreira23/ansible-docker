@@ -3,3 +3,4 @@ ansible-lint==25.12.1
 jmespath==1.0.1
 ara==1.7.4
 dnspython==2.8.0
+pihole6api==0.2.1
