@@ -1,7 +1,14 @@
-name: commitlint
+---
+name: commit-lint
+
 on:
   pull_request:
-    types: [opened, reopened, synchronize]
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - edited
+      - ready_for_review
   workflow_dispatch: {}
 
 permissions:
@@ -11,7 +18,7 @@ permissions:
   statuses: read
 
 jobs:
-  commitlint:
+  commit-lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
