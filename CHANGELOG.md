@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/hferreira23/ansible-docker/compare/1.3.0...1.3.1) (2025-12-29)
+
+
+### Documentation
+
+* update README ([#20](https://github.com/hferreira23/ansible-docker/issues/20)) ([0992b38](https://github.com/hferreira23/ansible-docker/commit/0992b385e7e6046ebaa117be2485423f3da47774))
+
 ## [1.3.0](https://github.com/hferreira23/ansible-docker/compare/v1.2.0...1.3.0) (2025-12-29)
 
 
