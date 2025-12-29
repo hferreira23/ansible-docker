@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.3.0](https://github.com/hferreira23/ansible-docker/compare/v1.2.0...1.3.0) (2025-12-29)
+
+
+### Features
+
+* adding pihole collection ([#19](https://github.com/hferreira23/ansible-docker/issues/19)) ([b924555](https://github.com/hferreira23/ansible-docker/commit/b9245557cf7d15644dde84b6f8b0ea4673821f5f))
+
+
+### Documentation
+
+* update README badges ([#18](https://github.com/hferreira23/ansible-docker/issues/18)) ([100588e](https://github.com/hferreira23/ansible-docker/commit/100588e48562e76b5de7e2e874ac8cd47ee14b29))
+* update README.md ([#15](https://github.com/hferreira23/ansible-docker/issues/15)) ([cc16038](https://github.com/hferreira23/ansible-docker/commit/cc16038fd0f5e0d444b8fd657066fdddfdf56973))
+
+
+### Continuous Integration
+
+* job ordering and release-please config tweak ([#14](https://github.com/hferreira23/ansible-docker/issues/14)) ([b54e529](https://github.com/hferreira23/ansible-docker/commit/b54e5293788e2540f2df685245e26d6f2a2344ba))
+* refactor jobs ([#16](https://github.com/hferreira23/ansible-docker/issues/16)) ([5f28d82](https://github.com/hferreira23/ansible-docker/commit/5f28d8202a22eead1fa0e89b37dea921c6cf5cb9))
+
 ## [1.2.0](https://github.com/hferreira23/ansible-docker/compare/v1.1.0...v1.2.0) (2025-12-26)
 
 
