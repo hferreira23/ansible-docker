@@ -6,7 +6,7 @@
 [![auto-merge](https://github.com/hferreira23/ansible-docker/actions/workflows/auto-merge.yaml/badge.svg)](https://github.com/hferreira23/ansible-docker/actions/workflows/auto-merge.yaml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A production-ready, multi-architecture Docker image for Ansible automation, optimized for size and security.
+A multi-architecture Docker image for Ansible automation, optimized for size and security. It's setup for my own hobby needs, feel free to fork or copy and change to fit your use case.
 
 ## 🚀 Features
 
@@ -24,11 +24,11 @@ Images are published to both Docker Hub and GitHub Container Registry:
 ```bash
 # Docker Hub
 docker pull hferreira/ansible-docker:latest
-docker pull hferreira/ansible-docker:1.2.0
+docker pull hferreira/ansible-docker:1.3.0
 
 # GitHub Container Registry
 docker pull ghcr.io/hferreira23/ansible-docker:latest
-docker pull ghcr.io/hferreira23/ansible-docker:1.2.0
+docker pull ghcr.io/hferreira23/ansible-docker:1.3.0
 ```
 
 ## 🔧 What's Inside
@@ -39,6 +39,7 @@ docker pull ghcr.io/hferreira23/ansible-docker:1.2.0
 - **jmespath** 1.0.1 - JSON query language for Ansible filters
 - **ara** 1.7.4 - Ansible Run Analysis for playbook reporting
 - **dnspython** 2.8.0 - DNS toolkit for Python
+- **pihole6api** 0.2.1 - Pi-hole API client for Python
 
 ### Ansible Collections
 - `community.general` - General purpose Ansible modules
@@ -46,6 +47,7 @@ docker pull ghcr.io/hferreira23/ansible-docker:1.2.0
 - `ansible.netcommon` - Network device modules
 - `community.docker` - Docker container management
 - `community.libvirt` - Libvirt virtualization
+- `hferreira23.pihole` - Pi-hole management
 
 ### System Tools
 - `git` - Version control
@@ -132,10 +134,10 @@ This repository uses [Release Please](https://github.com/googleapis/release-plea
 
 ### Build Triggers
 
-- **After Release** - Builds when SemVer workflow creates a release
+- **Release Published** - Builds and pushes when a GitHub release is published
 - **Pull Requests** - Builds (without push) for PRs starting with `fix:` or `feat:`
-- **Scheduled** - Weekly builds on Saturdays at 4:00 AM UTC
-- **Manual** - Via workflow_dispatch for on-demand builds
+- **Scheduled** - Weekly builds on Saturdays at 4:00 AM UTC using latest release
+- **Manual** - Via workflow_dispatch for on-demand builds using latest release
 
 ## 🏷️ Version Tags
 
@@ -194,4 +196,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 **Maintained by**: [Hugo Ferreira](https://github.com/hferreira23)
-**Current Version**: 1.2.0
+**Current Version**: 1.3.0
