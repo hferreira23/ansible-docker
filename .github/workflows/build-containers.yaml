@@ -53,13 +53,31 @@ jobs:
             echo "ref=${{ github.event.release.tag_name }}" >> "$GITHUB_OUTPUT"
             echo "✅ Release published, building and pushing: ${{ github.event.release.tag_name }}"
           elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            # For PRs, check if it's a fix:, feat: (any scope), or build:(deps) commit - build but don't push
+            # For PRs, build for fix:, feat: (any scope), or build(deps) titles and skip others
             pr_title="${{ github.event.pull_request.title }}"
-            if [[ "$pr_title" =~ ^(fix|feat)(\([^)]+\))?: ]] || [[ "$pr_title" =~ ^build\(deps\): ]]; then
+            match=false
+            case "$pr_title" in
+              fix:*)
+                match=true
+                ;;
+              fix\(*\):*)
+                match=true
+                ;;
+              feat:*)
+                match=true
+                ;;
+              feat\(*\):*)
+                match=true
+                ;;
+              build\(deps\):*)
+                match=true
+                ;;
+            esac
+            if [[ "$match" == true ]]; then
               echo "should-build=true" >> "$GITHUB_OUTPUT"
               echo "should-push=false" >> "$GITHUB_OUTPUT"
               echo "ref=${{ github.event.pull_request.head.sha }}" >> "$GITHUB_OUTPUT"
-              echo "✅ Fix/feat (any scope) or build(deps) PR detected, building without pushing"
+              echo "✅ Matching PR detected, building without pushing"
             else
               echo "should-build=false" >> "$GITHUB_OUTPUT"
               echo "should-push=false" >> "$GITHUB_OUTPUT"
