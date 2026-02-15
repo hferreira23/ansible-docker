@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.3.1](https://github.com/hferreira23/ansible-docker/compare/1.3.0...1.3.1) (2026-02-15)
+
+
+### Documentation
+
+* update README ([#20](https://github.com/hferreira23/ansible-docker/issues/20)) ([0992b38](https://github.com/hferreira23/ansible-docker/commit/0992b385e7e6046ebaa117be2485423f3da47774))
+
+
+### Build System
+
+* **deps:** bump ansible-core from 2.20.1 to 2.20.2 ([#24](https://github.com/hferreira23/ansible-docker/issues/24)) ([29e6f6b](https://github.com/hferreira23/ansible-docker/commit/29e6f6b4088345b80a581cfa51d283353285dddb))
+* **deps:** bump ansible-lint from 25.12.1 to 26.1.1 ([#25](https://github.com/hferreira23/ansible-docker/issues/25)) ([189a64e](https://github.com/hferreira23/ansible-docker/commit/189a64e171024a1c5c16ad9a0a593f97b89d7415))
+* **deps:** bump jmespath from 1.0.1 to 1.1.0 ([#23](https://github.com/hferreira23/ansible-docker/issues/23)) ([4d0e557](https://github.com/hferreira23/ansible-docker/commit/4d0e557ba43d952fcb4def85397bebc5a43e4212))
+
+
+### Continuous Integration
+
+* adding pip to dependabot ([#22](https://github.com/hferreira23/ansible-docker/issues/22)) ([56d5eb7](https://github.com/hferreira23/ansible-docker/commit/56d5eb74398cf52654d355eb079c7030373b19bf))
+* tweak CI to handle dependabot requirements updates ([#26](https://github.com/hferreira23/ansible-docker/issues/26)) ([2634e9e](https://github.com/hferreira23/ansible-docker/commit/2634e9e408654b8ebe5b59d55f1f272c48fbd2c3))
+
 ## [1.3.0](https://github.com/hferreira23/ansible-docker/compare/v1.2.0...1.3.0) (2025-12-29)
 
 
