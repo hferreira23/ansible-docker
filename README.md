@@ -3,14 +3,13 @@
 [![build-containers](https://github.com/hferreira23/ansible-docker/actions/workflows/build-containers.yaml/badge.svg)](https://github.com/hferreira23/ansible-docker/actions/workflows/build-containers.yaml)
 [![sem-ver-release](https://github.com/hferreira23/ansible-docker/actions/workflows/sem-ver-release.yaml/badge.svg)](https://github.com/hferreira23/ansible-docker/actions/workflows/sem-ver-release.yaml)
 [![commit-lint](https://github.com/hferreira23/ansible-docker/actions/workflows/commit-lint.yaml/badge.svg)](https://github.com/hferreira23/ansible-docker/actions/workflows/commit-lint.yaml)
-[![auto-merge](https://github.com/hferreira23/ansible-docker/actions/workflows/auto-merge.yaml/badge.svg)](https://github.com/hferreira23/ansible-docker/actions/workflows/auto-merge.yaml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A multi-architecture Docker image for Ansible automation, optimized for size and security. It's setup for my own hobby needs, feel free to fork or copy and change to fit your use case.
 
 ## 🚀 Features
 
-- **Latest Ansible Core**: Built with ansible-core 2.20.1
+- **Latest Ansible Core**: Built with ansible-core
 - **Multi-Architecture**: Native support for `linux/amd64` and `linux/arm64`
 - **Optimized Size**: Minimal image footprint through aggressive cleanup and optimization
 - **Pre-installed Tools**: Includes ansible-lint, jmespath, ara, and essential Ansible collections
@@ -24,22 +23,22 @@ Images are published to both Docker Hub and GitHub Container Registry:
 ```bash
 # Docker Hub
 docker pull hferreira/ansible-docker:latest
-docker pull hferreira/ansible-docker:1.3.0
+docker pull hferreira/ansible-docker:<release-version>
 
 # GitHub Container Registry
 docker pull ghcr.io/hferreira23/ansible-docker:latest
-docker pull ghcr.io/hferreira23/ansible-docker:1.3.0
+docker pull ghcr.io/hferreira23/ansible-docker:<release-version>
 ```
 
 ## 🔧 What's Inside
 
 ### Python Packages
-- **ansible-core** 2.20.1 - Core Ansible automation engine
-- **ansible-lint** 25.12.1 - Best practice checker for Ansible
-- **jmespath** 1.0.1 - JSON query language for Ansible filters
-- **ara** 1.7.4 - Ansible Run Analysis for playbook reporting
-- **dnspython** 2.8.0 - DNS toolkit for Python
-- **pihole6api** 0.2.1 - Pi-hole API client for Python
+- **ansible-core** - Core Ansible automation engine
+- **ansible-lint** - Best practice checker for Ansible
+- **jmespath** - JSON query language for Ansible filters
+- **ara** - Ansible Run Analysis for playbook reporting
+- **dnspython** - DNS toolkit for Python
+- **pihole6api** - Pi-hole API client for Python
 
 ### Ansible Collections
 - `community.general` - General purpose Ansible modules
