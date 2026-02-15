@@ -53,17 +53,35 @@ jobs:
             echo "ref=${{ github.event.release.tag_name }}" >> "$GITHUB_OUTPUT"
             echo "✅ Release published, building and pushing: ${{ github.event.release.tag_name }}"
           elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            # For PRs, check if it's a fix: or feat: commit - build but don't push
+            # For PRs, build for fix:, feat: (any scope), or build(deps) titles and skip others
             pr_title="${{ github.event.pull_request.title }}"
-            if [[ "$pr_title" =~ ^(fix|feat): ]]; then
+            match=false
+            case "$pr_title" in
+              fix:*)
+                match=true
+                ;;
+              fix\(*\):*)
+                match=true
+                ;;
+              feat:*)
+                match=true
+                ;;
+              feat\(*\):*)
+                match=true
+                ;;
+              build\(deps\):*)
+                match=true
+                ;;
+            esac
+            if [[ "$match" == true ]]; then
               echo "should-build=true" >> "$GITHUB_OUTPUT"
               echo "should-push=false" >> "$GITHUB_OUTPUT"
               echo "ref=${{ github.event.pull_request.head.sha }}" >> "$GITHUB_OUTPUT"
-              echo "✅ Fix/feat PR detected, building without pushing"
+              echo "✅ Matching PR detected, building without pushing"
             else
               echo "should-build=false" >> "$GITHUB_OUTPUT"
               echo "should-push=false" >> "$GITHUB_OUTPUT"
-              echo "⏭️  PR doesn't start with fix: or feat:, skipping build"
+              echo "⏭️  PR doesn't match build criteria, skipping build"
             fi
           elif [[ "${{ github.event_name }}" == "schedule" ]] || [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             # For schedule/manual triggers, use latest release
