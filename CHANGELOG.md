@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.3.2](https://github.com/hferreira23/ansible-docker/compare/1.3.1...1.3.2) (2026-03-01)
+
+
+### Build System
+
+* **deps:** bump ansible-core from 2.20.2 to 2.20.3 ([#27](https://github.com/hferreira23/ansible-docker/issues/27)) ([ad2b904](https://github.com/hferreira23/ansible-docker/commit/ad2b904efb8ebc66e7221ed730524349a9839cc5))
+* **deps:** bump ansible-lint from 26.1.1 to 26.2.0 ([#29](https://github.com/hferreira23/ansible-docker/issues/29)) ([355f39b](https://github.com/hferreira23/ansible-docker/commit/355f39b2a28e2e7dd623e3c9725c6cb88ee26082))
+* **deps:** bump ara from 1.7.4 to 1.7.5 ([#28](https://github.com/hferreira23/ansible-docker/issues/28)) ([5869593](https://github.com/hferreira23/ansible-docker/commit/58695936ccdc89a1ad45e1817b59276c4314c568))
+
 ## [1.3.1](https://github.com/hferreira23/ansible-docker/compare/1.3.0...1.3.1) (2026-02-15)
 
 
