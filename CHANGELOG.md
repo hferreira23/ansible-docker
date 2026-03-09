@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.3.3](https://github.com/hferreira23/ansible-docker/compare/1.3.2...1.3.3) (2026-03-09)
+
+
+### Build System
+
+* **deps:** bump ansible-lint from 26.2.0 to 26.3.0 ([#35](https://github.com/hferreira23/ansible-docker/issues/35)) ([6545b8f](https://github.com/hferreira23/ansible-docker/commit/6545b8f674824015abcb73238e2a162197194aa8))
+* **deps:** bump docker/build-push-action from 6 to 7 ([#33](https://github.com/hferreira23/ansible-docker/issues/33)) ([25ed305](https://github.com/hferreira23/ansible-docker/commit/25ed305eb9b1550d3086d5016dfe8aeac926c024))
+* **deps:** bump docker/login-action from 3 to 4 ([#32](https://github.com/hferreira23/ansible-docker/issues/32)) ([cf97781](https://github.com/hferreira23/ansible-docker/commit/cf97781559ef26c30b203a3bbe791b4f5219ac69))
+* **deps:** bump docker/setup-buildx-action from 3 to 4 ([#34](https://github.com/hferreira23/ansible-docker/issues/34)) ([c7f9c32](https://github.com/hferreira23/ansible-docker/commit/c7f9c3228194722049a4297ad702f51f85e070ab))
+* **deps:** bump docker/setup-qemu-action from 3 to 4 ([#31](https://github.com/hferreira23/ansible-docker/issues/31)) ([819a1f8](https://github.com/hferreira23/ansible-docker/commit/819a1f8f407957e59ad74b56438d7499993bf6eb))
+
 ## [1.3.2](https://github.com/hferreira23/ansible-docker/compare/1.3.1...1.3.2) (2026-03-01)
 
 
