@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.3.4](https://github.com/hferreira23/ansible-docker/compare/1.3.3...1.3.4) (2026-04-11)
+
+
+### Build System
+
+* **deps:** bump actions/create-github-app-token from 2 to 3 ([#37](https://github.com/hferreira23/ansible-docker/issues/37)) ([3920ac3](https://github.com/hferreira23/ansible-docker/commit/3920ac3295c9c52fac89530c08cfd78b0fd620c3))
+* **deps:** bump ansible-core from 2.20.3 to 2.20.4 ([#38](https://github.com/hferreira23/ansible-docker/issues/38)) ([754b8a7](https://github.com/hferreira23/ansible-docker/commit/754b8a7ed7d3028812dd034c381d9e3dc7cd2669))
+* **deps:** bump ansible-lint from 26.3.0 to 26.4.0 ([#39](https://github.com/hferreira23/ansible-docker/issues/39)) ([60b89c1](https://github.com/hferreira23/ansible-docker/commit/60b89c126cb9a500c5022f64f37299aba1c1f71b))
+
 ## [1.3.3](https://github.com/hferreira23/ansible-docker/compare/1.3.2...1.3.3) (2026-03-09)
 
 
