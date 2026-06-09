@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.5](https://github.com/hferreira23/ansible-docker/compare/1.3.4...1.3.5) (2026-06-07)
+
+
+### Build System
+
+* **deps:** bump ansible-core from 2.20.4 to 2.21.0 ([#43](https://github.com/hferreira23/ansible-docker/issues/43)) ([c765f80](https://github.com/hferreira23/ansible-docker/commit/c765f8006666802ea4079e2e98cef134a1843835))
+* **deps:** bump googleapis/release-please-action from 4 to 5 ([#42](https://github.com/hferreira23/ansible-docker/issues/42)) ([fb47451](https://github.com/hferreira23/ansible-docker/commit/fb47451982718b39c13ea8102bad675cdecbb248))
+
 ## [1.3.4](https://github.com/hferreira23/ansible-docker/compare/1.3.3...1.3.4) (2026-04-11)
 
 
