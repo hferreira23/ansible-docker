@@ -36,7 +36,7 @@ jobs:
       has-version: ${{ steps.version.outputs.has-version }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -131,7 +131,7 @@ jobs:
       ghcr-image-amd: ghcr.io/${{ github.repository }}:amd64
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: ${{ needs.prepare.outputs.ref }}
 
@@ -180,7 +180,7 @@ jobs:
       ghcr-image-arm: ghcr.io/${{ github.repository }}:arm64
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: ${{ needs.prepare.outputs.ref }}
 
