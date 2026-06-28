@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.6](https://github.com/hferreira23/ansible-docker/compare/1.3.5...1.3.6) (2026-06-28)
+
+
+### Build System
+
+* **deps:** bump actions/checkout from 6 to 7 ([#45](https://github.com/hferreira23/ansible-docker/issues/45)) ([94ff99a](https://github.com/hferreira23/ansible-docker/commit/94ff99ac00164bfc4506f00f6d0dfd3b4313759b))
+* **deps:** bump ansible-core from 2.21.0 to 2.21.1 ([#46](https://github.com/hferreira23/ansible-docker/issues/46)) ([00173c9](https://github.com/hferreira23/ansible-docker/commit/00173c99a2ac9338834e103ae097a68eca04c789))
+
 ## [1.3.5](https://github.com/hferreira23/ansible-docker/compare/1.3.4...1.3.5) (2026-06-07)
 
 
