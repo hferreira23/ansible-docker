@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.3.6](https://github.com/hferreira23/ansible-docker/compare/1.3.5...1.3.6) (2026-08-05)
+
+
+### Build System
+
+* **deps:** bump actions/checkout from 6 to 7 ([#45](https://github.com/hferreira23/ansible-docker/issues/45)) ([94ff99a](https://github.com/hferreira23/ansible-docker/commit/94ff99ac00164bfc4506f00f6d0dfd3b4313759b))
+* **deps:** bump ansible-core from 2.21.0 to 2.21.1 ([#46](https://github.com/hferreira23/ansible-docker/issues/46)) ([00173c9](https://github.com/hferreira23/ansible-docker/commit/00173c99a2ac9338834e103ae097a68eca04c789))
+* **deps:** bump ansible-core from 2.21.1 to 2.21.2 ([#49](https://github.com/hferreira23/ansible-docker/issues/49)) ([8725304](https://github.com/hferreira23/ansible-docker/commit/872530411db6c6912e51eca0d3c45f4e9e983a88))
+* **deps:** bump ansible-lint from 26.4.0 to 26.6.0 ([#48](https://github.com/hferreira23/ansible-docker/issues/48)) ([aba2ae0](https://github.com/hferreira23/ansible-docker/commit/aba2ae05fb0c34e7e62543ae7a2b1772b1ec0fba))
+* **deps:** bump ara from 1.7.5 to 1.8.0 ([#50](https://github.com/hferreira23/ansible-docker/issues/50)) ([22b8d0c](https://github.com/hferreira23/ansible-docker/commit/22b8d0ce3d4e508c810428fcad265916bebca7fa))
+* **deps:** bump docker/login-action from 4 to 4.5.2 ([#51](https://github.com/hferreira23/ansible-docker/issues/51)) ([e9d424d](https://github.com/hferreira23/ansible-docker/commit/e9d424deb99ed6f2bc9fb9e4b7d9f9cd607044bc))
+
+
+### Continuous Integration
+
+* group dependabot updates by file ([#52](https://github.com/hferreira23/ansible-docker/issues/52)) ([5e4a62f](https://github.com/hferreira23/ansible-docker/commit/5e4a62f54d480d2bbc6dc0d15994e072e062ca46))
+
 ## [1.3.5](https://github.com/hferreira23/ansible-docker/compare/1.3.4...1.3.5) (2026-06-07)
 
 
