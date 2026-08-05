@@ -1,6 +1,6 @@
 ansible-core==2.21.1
 ansible-lint==26.6.0
 jmespath==1.1.0
-ara==1.7.5
+ara==1.8.0
 dnspython==2.8.0
 pihole6api==0.2.1
