@@ -31,7 +31,7 @@ COPY ./requirements.yml ./
 
 COPY --from=builder /build /opt/python
 
-RUN ansible-galaxy collection install -r ./requirements.yml &&\
+RUN /opt/python/bin/ansible-galaxy collection install -r ./requirements.yml &&\
     find /opt/python -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete &&\
     find /opt/python -type d -name __pycache__ -delete &&\
     sync
