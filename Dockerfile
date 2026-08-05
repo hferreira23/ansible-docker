@@ -14,6 +14,7 @@ FROM base
 
 ENV OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 ENV PYTHONUNBUFFERED=1
+ENV PATH="/opt/python/bin:${PATH}"
 
 RUN echo 'path-exclude=/usr/share/doc/*' >> /etc/dpkg/dpkg.cfg.d/01_nodoc && \
     echo 'path-exclude=/usr/share/man/*' >> /etc/dpkg/dpkg.cfg.d/01_nodoc && \
@@ -31,7 +32,7 @@ COPY ./requirements.yml ./
 
 COPY --from=builder /build /opt/python
 
-RUN /opt/python/bin/ansible-galaxy collection install -r ./requirements.yml &&\
+RUN ansible-galaxy collection install -r ./requirements.yml &&\
     find /opt/python -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete &&\
     find /opt/python -type d -name __pycache__ -delete &&\
     sync
