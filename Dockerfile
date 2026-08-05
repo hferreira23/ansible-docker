@@ -14,6 +14,8 @@ FROM base
 
 ENV OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 ENV PYTHONUNBUFFERED=1
+ENV PATH="/opt/python/bin:${PATH}"
+ENV PYTHONPATH="/opt/python/lib/python3.14/site-packages:${PYTHONPATH}"
 
 RUN echo 'path-exclude=/usr/share/doc/*' >> /etc/dpkg/dpkg.cfg.d/01_nodoc && \
     echo 'path-exclude=/usr/share/man/*' >> /etc/dpkg/dpkg.cfg.d/01_nodoc && \
