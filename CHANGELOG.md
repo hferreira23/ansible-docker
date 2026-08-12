@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.7](https://github.com/hferreira23/ansible-docker/compare/1.3.6...1.3.7) (2026-08-12)
+
+
+### Build System
+
+* **deps:** bump docker/login-action from 4.5.2 to 4.6.0 in the github-actions group ([#53](https://github.com/hferreira23/ansible-docker/issues/53)) ([6e63dce](https://github.com/hferreira23/ansible-docker/commit/6e63dce342742ae88f719c4c0fee2c3d97fa8438))
+
 ## [1.3.6](https://github.com/hferreira23/ansible-docker/compare/1.3.5...1.3.6) (2026-08-05)
 
 
