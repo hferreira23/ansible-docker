@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.9](https://github.com/hferreira23/ansible-docker/compare/1.3.8...1.3.9) (2026-10-03)
+
+
+### Build System
+
+* **deps:** bump the python-deps group across 1 directory with 2 updates ([#59](https://github.com/hferreira23/ansible-docker/issues/59)) ([9b6dd53](https://github.com/hferreira23/ansible-docker/commit/9b6dd533d1b132d5b53f993fab322f37c3edfd01))
+
 ## [1.3.8](https://github.com/hferreira23/ansible-docker/compare/1.3.7...1.3.8) (2026-08-29)
 
 
