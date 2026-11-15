@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.3.11](https://github.com/hferreira23/ansible-docker/compare/1.3.10...1.3.11) (2026-11-15)
+
+
+### Build System
+
+* **deps:** bump dnspython from 2.9.0 to 2.9.2 ([#69](https://github.com/hferreira23/ansible-docker/issues/69)) ([1ca1b11](https://github.com/hferreira23/ansible-docker/commit/1ca1b113879bf63ed5d8a0e933592bf282b19b38))
+* **deps:** bump docker/login-action from 4.6.0 to 4.7.0 in the github-actions group ([#65](https://github.com/hferreira23/ansible-docker/issues/65)) ([0a525a7](https://github.com/hferreira23/ansible-docker/commit/0a525a7894c2933b9297de63490c5d74c8c1a803))
+* **deps:** bump the python-deps group across 1 directory with 2 updates ([#71](https://github.com/hferreira23/ansible-docker/issues/71)) ([7e17571](https://github.com/hferreira23/ansible-docker/commit/7e17571bfa544a9f1dd77934317f0ee40945606a))
+
+
+### Continuous Integration
+
+* disable commit body line length limit ([#72](https://github.com/hferreira23/ansible-docker/issues/72)) ([72bb28f](https://github.com/hferreira23/ansible-docker/commit/72bb28fa07367d069b5c264f7d15e7bd58805380))
+
 ## [1.3.10](https://github.com/hferreira23/ansible-docker/compare/1.3.9...1.3.10) (2026-10-24)
 
 
